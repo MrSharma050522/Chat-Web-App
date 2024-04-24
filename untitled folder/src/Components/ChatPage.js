@@ -13,6 +13,8 @@ const ChatPage = (props) => {
     const [chatMessage, setChatMessage] = useState([]);
     const [newMessage, setNewMessage] = useState("");
     const messagesEndRef = useRef(null);
+    const messagesStartRef = useRef(null);
+    const messagesMiddleRef = useRef(null);
 
     // Function to hanlde change in new message
     const newMessageChangeHandler = (event) => {
@@ -23,6 +25,7 @@ const ChatPage = (props) => {
     const sendMessageHandler = () => {
         const tempArray = [...chatMessage];
         tempArray.push(newMessage);
+        if(newMessage === "") return;
         setChatMessage(tempArray);
         setNewMessage("");
         console.log(newMessage);
@@ -39,6 +42,17 @@ const ChatPage = (props) => {
     }, [props])
 
     useEffect(() => {
+        const messagesEndElement = messagesEndRef.current;
+        const messagesStartElement = messagesStartRef.current;
+        console.log("Message Element -> ", messagesStartElement)
+        if (messagesEndElement) {
+            const { top, left } = messagesEndElement.getBoundingClientRect();
+            console.log(`Top: ${top}px, Left: ${left}px`);
+        }
+        if (messagesStartElement) {
+            const { top, left } = messagesStartElement.getBoundingClientRect();
+            console.log("------",`Top: ${top}px, Left: ${left}px`);
+        }
         scrollToBottom();
     }, [chatMessage]);
 
@@ -88,7 +102,7 @@ const ChatPage = (props) => {
                         justifyContent: isEven ? "flex-start" : "flex-end",
                     };
                     return (
-                        <div key={i} style={containerStyle}>
+                        <div key={i} style={containerStyle} ref={i == 0 ? messagesStartRef : messagesMiddleRef}>
                             <div style={messageStyle}>
                                 <p style={{ margin: 0 }}>{el}</p>
                             </div>
