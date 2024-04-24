@@ -29,9 +29,6 @@ const ChatPage = (props) => {
         setChatMessage(tempArray);
         setNewMessage("");
         console.log(newMessage);
-        console.log(newMessage);
-        console.log(newMessage);
-        console.log(newMessage);
     }
 
     useEffect(() => {
