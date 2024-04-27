@@ -103,7 +103,10 @@ const Register = () => {
                             type="submit"
                             variant="contained"
                             color="primary"
-                            style={{ marginTop: "10px", backgroundColor: "green" }}
+                            style={{
+                                marginTop: "10px",
+                                backgroundColor: "green",
+                            }}
                         >
                             {newUserLogin ? "Sign-Up" : "Sign-In"}
                         </Button>
