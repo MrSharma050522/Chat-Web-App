@@ -15,6 +15,10 @@ const HttpService = {
         console.log("getAllUser", data);
         return axios.get(`${BackendApiUrl}users/getAllUser`, data);
     },
+    getAllChatGroupOfAUser: function (userId) {
+        console.log("getAllChatGroupOfAUser", userId);
+        return axios.get(`${BackendApiUrl}users/getAllChatGroupOfAUser/${userId}`);
+    },
     createNewChatGroup: function (data) {
         console.log("createNewChatGroup", data);
         return axios.post(`${BackendApiUrl}chat-group/createNewChatGroup`, data);

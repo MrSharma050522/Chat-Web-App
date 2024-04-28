@@ -121,6 +121,18 @@ const Sidebar = () => {
         setNewGroupUsers(values);
     };
 
+    // Function to get all chat groups of a user
+    const getAllChatGroupOfAUser = async (userId) => {
+        try {
+            const response = await HttpService.getAllChatGroupOfAUser(userId);
+            console.log("All Chat Group 1 -> ", response.data);
+            setGroupName(response.data.chatGroups[0].groupName);
+            setGroupNameArray(response.data.chatGroups);
+        } catch (error) {
+            console.log("Error -:> ", error);
+        }
+    }
+
     // Function to get all chat groups associated with a user
     const getAllChatGroups = async (userId) => {
         try {
@@ -134,7 +146,7 @@ const Sidebar = () => {
     };
 
     useEffect(() => {
-        getAllChatGroups();
+        getAllChatGroupOfAUser(userDetails._id);
     }, []);
 
     return (
